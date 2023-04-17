@@ -9,13 +9,19 @@ namespace ariel
     class Fraction
     {
     private:
+        //variebles
         int numerator_;
         int denominator_;
+        
+        //helper functions
+        int gcd (const Fraction &); 
+        void reduce (); 
 
     public:
         // constructors
         Fraction();
         Fraction(int, int);
+        Fraction(double);
 
         // Fraction(const Fraction&);
         // Fraction &operator= (const Fraction&);
@@ -69,8 +75,8 @@ namespace ariel
         friend bool operator<=(const Fraction &, double);
         friend bool operator<=(double, const Fraction &);
         
-        friend istream& operator>>(istream& input, const Fraction &);
-        friend ostream& operator<<(ostream& output, const Fraction &);
+        friend istream& operator>>(istream&, Fraction &);
+        friend ostream& operator<<(ostream&, Fraction &);
     };
 
 }
