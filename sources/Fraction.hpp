@@ -9,19 +9,21 @@ namespace ariel
     class Fraction
     {
     private:
-        //variebles
+        // variebles
         int numerator_;
         int denominator_;
-        
-        //helper functions
-        int gcd (const Fraction &); 
-        void reduce (); 
+
+        // helper functions
+        void reduce();
+        int gcd(int, int);
+        int abs(int);
+        int compereTo (const Fraction&);
 
     public:
         // constructors
         Fraction();
         Fraction(int, int);
-        Fraction(double);
+        Fraction(float);
 
         // Fraction(const Fraction&);
         // Fraction &operator= (const Fraction&);
@@ -29,54 +31,54 @@ namespace ariel
 
         // overload plus operator
         Fraction &operator+(const Fraction &);
-        friend Fraction &operator+ (const Fraction&, double);
-        friend Fraction &operator+ (double, const Fraction&);
+        Fraction &operator+(float) const;
+        friend Fraction &operator+(float, const Fraction &);
 
         // overload minus operator
         Fraction &operator-(const Fraction &);
-        friend Fraction &operator- (const Fraction&, double);
-        friend Fraction &operator- (double, const Fraction&);
+        Fraction &operator-(float) const;
+        friend Fraction &operator-(float, const Fraction &);
 
         // overload multiplication operator
         Fraction &operator*(const Fraction &);
-        friend Fraction &operator* (const Fraction&, double);
-        friend Fraction &operator* (double, const Fraction&);
+        Fraction &operator*(float) const;
+        friend Fraction &operator*(float, const Fraction &);
 
         // overload division operator
         Fraction &operator/(const Fraction &);
-        friend Fraction &operator/ (const Fraction&, double);
-        friend Fraction &operator/ (double, const Fraction&);
+        Fraction &operator/(float) const;
+        friend Fraction &operator/(float, const Fraction &);
 
-        // overload increase by one opertor 
+        // overload increase by one opertor
         Fraction &operator++();    // prefix
         Fraction &operator++(int); // postfix
 
-        // overload decrease by one opertor 
+        // overload decrease by one opertor
         Fraction &operator--();    // prefix
         Fraction &operator--(int); // postfix
 
         bool operator==(const Fraction &);
-        friend bool operator==(const Fraction &, double);
-        friend bool operator==(double, const Fraction &);
-        
+        friend bool operator==(const Fraction &, float);
+        friend bool operator==(float, const Fraction &);
+
         bool operator>(const Fraction &);
-        friend bool operator>(const Fraction &, double);
-        friend bool operator>(double, const Fraction &);
-        
+        friend bool operator>(const Fraction &, float);
+        friend bool operator>(float, const Fraction &);
+
         bool operator<(const Fraction &);
-        friend bool operator<(const Fraction &, double);
-        friend bool operator<(double, const Fraction &);
-        
+        friend bool operator<(const Fraction &, float);
+        friend bool operator<(float, const Fraction &);
+
         bool operator>=(const Fraction &);
-        friend bool operator>=(const Fraction &, double);
-        friend bool operator>=(double, const Fraction &);
-        
+        friend bool operator>=(const Fraction &, float);
+        friend bool operator>=(float, const Fraction &);
+
         bool operator<=(const Fraction &);
-        friend bool operator<=(const Fraction &, double);
-        friend bool operator<=(double, const Fraction &);
-        
-        friend istream& operator>>(istream&, Fraction &);
-        friend ostream& operator<<(ostream&, Fraction &);
+        friend bool operator<=(const Fraction &, float);
+        friend bool operator<=(float, const Fraction &);
+
+        friend istream &operator>>(istream &, Fraction &);
+        friend ostream &operator<<(ostream &, const Fraction &);
     };
 
 }
