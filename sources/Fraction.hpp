@@ -17,7 +17,7 @@ namespace ariel
         void reduce();
         int gcd(int, int);
         int abs(int);
-        int compereTo (const Fraction&);
+        int compareTo (const Fraction&);
 
     public:
         // constructors

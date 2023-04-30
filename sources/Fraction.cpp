@@ -11,6 +11,12 @@ Fraction::Fraction()
 }
 Fraction::Fraction(int numerator, int denominator)
 {
+    // first, check if the fraction is valid
+    if (denominator == 0)
+    {
+        throw invalid_argument("0 can't be in the denominator");
+    }
+
     this->numerator_ = numerator;
     this->denominator_ = denominator;
     reduce();
@@ -61,6 +67,24 @@ int Fraction::abs(int number)
         return (-1) * number;
     }
     return number;
+}
+int Fraction::compareTo(const Fraction &otherFraction)
+{
+    // first, find the common divider:
+    int gcdNum = gcd(this->denominator_, otherFraction.denominator_);
+    int mult = abs(this->denominator_ * otherFraction.denominator_);
+    int lcm = mult / gcdNum;
+    // then, multiply both fructions by the commonDivider
+    int thisnumerator = this->numerator_ * (lcm / this->denominator_);
+    int otherNumerator = otherFraction.numerator_ * (lcm / otherFraction.denominator_);
+    // compare the numerators
+    if (thisnumerator > otherNumerator)
+        return 1;
+
+    if (thisnumerator < otherNumerator)
+        return -1;
+
+    return 0;
 }
 
 // overload plus operator
@@ -177,23 +201,29 @@ Fraction &Fraction::operator--(int num)
 
 bool Fraction::operator==(const Fraction &otherFraction)
 {
-    return true;
+    if (this->compareTo(otherFraction) == 0)
+        return true;
+    return false;
 }
 bool Fraction::operator>(const Fraction &otherFraction)
 {
-    return true;
+    if (this->compareTo(otherFraction) == 1)
+        return true;
+    return false;
 }
 bool Fraction::operator<(const Fraction &otherFraction)
 {
-    return true;
+    if (this->compareTo(otherFraction) == 1)
+        return true;
+    return false;
 }
 bool Fraction::operator<=(const Fraction &otherFraction)
 {
-    return true;
+    return (*this < otherFraction) || (*this == otherFraction);
 }
 bool Fraction::operator>=(const Fraction &otherFraction)
 {
-    return true;
+    return (*this > otherFraction) || (*this == otherFraction);
 }
 
 istream &ariel::operator>>(istream &input, Fraction &otherFraction)
@@ -214,7 +244,7 @@ istream &ariel::operator>>(istream &input, Fraction &otherFraction)
 
     return input;
 }
-ostream &ariel::operator<<(ostream &output, Fraction &otherFraction)
+ostream &operator<<(ostream &output, Fraction &otherFraction)
 {
     output << otherFraction.numerator_ << '/' << otherFraction.denominator_;
     return output;
