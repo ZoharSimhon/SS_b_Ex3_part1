@@ -35,7 +35,7 @@ namespace ariel
 
         // overload minus operator
         Fraction operator-(const Fraction &);
-        Fraction operator-(float) const;
+        Fraction operator-(float);
         friend Fraction operator-(float, const Fraction &);
 
         // overload multiplication operator

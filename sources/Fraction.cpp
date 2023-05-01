@@ -134,18 +134,18 @@ Fraction Fraction::operator-(const Fraction &otherFraction)
     Fraction subFraction(subNumerator, lcm);
     return subFraction;
 }
-Fraction Fraction::operator-(float number) const
+Fraction Fraction::operator-(float number)
 {
     // first, convert the number to fraction
     int numerator = number * 1000;
     int denominator = 1000;
-    Fraction floatFrac(numerator, denominator);
+    Fraction const floatFrac(numerator, denominator);
 
-    return floatFrac - *this;
+    return *this - floatFrac;
 }
 Fraction ariel::operator-(float number, const Fraction &otherFraction)
 {
-    return otherFraction - number;
+    return number - otherFraction;
 }
 
 // overload multiplication operator
