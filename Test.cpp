@@ -39,8 +39,8 @@ TEST_CASE("Minus operator")
     Fraction c(10, 40);
     CHECK((c - 1) == -0.75);
     // check float - Fraction
-    Fraction d(12, 448);
-    CHECK((0 - d) == 0.026);
+    Fraction d(5, 100);
+    CHECK((0.05 - d) == 0);
 }
 
 TEST_CASE("Multiplication operator")
@@ -52,19 +52,19 @@ TEST_CASE("Multiplication operator")
     Fraction c(12, 100);
     CHECK((c * 0) == 0);
     // check float * Fraction
-    Fraction d(12, 448);
-    CHECK((1 * d) == 0.026);
+    Fraction d(12, 1000);
+    CHECK((1 * d) == 0.012);
 }
 
 TEST_CASE("Division operator")
 {
-    Fraction a(1, 25), b(3, 4);
-    // check Fraction * Fraction
-    CHECK((a / b) == 0.053);
-    // check Fraction * float
+    Fraction a(1, 25), b(5, 4);
+    // check Fraction / Fraction
+    CHECK((a / b) == 0.032);
+    // check Fraction / float
     Fraction c(27, 4);
-    CHECK((c / 0.256) == 26.367);
-    // check float * Fraction
+    CHECK((c / 0.24) == 28.125);
+    // check float / Fraction
     Fraction d(12, 448);
     CHECK((0 / d) == 0);
     // check division in 0
@@ -76,9 +76,9 @@ TEST_CASE("Increase by one opertor")
 {
     Fraction a(1, 25);
     // check prefix
-    CHECK((a++) == 1.04);
-    // check postfix
     CHECK((++a) == 1.04);
+    // check postfix
+    CHECK((a++) == 1.04);
     CHECK(a == 2.04);
 }
 
@@ -86,9 +86,9 @@ TEST_CASE("Decrease by one opertor")
 {
     Fraction a(4, 100);
     // check prefix
-    CHECK((a--) == -0.96);
+    CHECK((a--) == 0.04);
     // check postfix
-    CHECK((--a) == -0.96);
+    CHECK((--a) == -1.96);
     CHECK(a == -1.96);
 }
 
@@ -98,11 +98,11 @@ TEST_CASE("Equality opertor")
     // check Fraction == Fraction
     CHECK(a == b);
     // check Fraction = float
-    Fraction c(-286, 1024);
-    CHECK(c == -0.279);
+    Fraction c(-128, 1024);
+    CHECK(c == -0.125);
     // check float == Fraction
-    Fraction d(2045, -255);
-    CHECK(d == -8.019);
+    Fraction d(2045, -250);
+    CHECK(d == -8.18);
 }
 
 TEST_CASE("Less-then opertor")

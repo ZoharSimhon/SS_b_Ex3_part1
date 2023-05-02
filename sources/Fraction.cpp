@@ -21,24 +21,6 @@ Fraction::Fraction(int numerator, int denominator)
     this->denominator_ = denominator;
     reduce();
 }
-// Fraction::Fraction(float number)
-// {
-//     int numerator = number * 1000;
-//     int denominator = 1000;
-//     Fraction(numerator, denominator);
-// }
-
-// Fraction::Fraction(const Fraction &otherFraction)
-// {
-//     this->numerator_ = otherFraction.numerator_;
-//     this->denominator_ = otherFraction.denominator_;
-// }
-// Fraction::~Fraction()
-// {
-// }
-// Fraction& Fraction::operator=(const Fraction &otherFraction){
-
-// }
 
 // helper functions
 int Fraction::gcd(int number1, int number2)
@@ -143,9 +125,9 @@ Fraction Fraction::operator-(float number)
 
     return *this - floatFrac;
 }
-Fraction ariel::operator-(float number, const Fraction &otherFraction)
+Fraction ariel::operator-(float number, Fraction &otherFraction)
 {
-    return number - otherFraction;
+    return otherFraction - number;
 }
 
 // overload multiplication operator
@@ -176,18 +158,19 @@ Fraction Fraction::operator/(const Fraction &otherFraction)
     Fraction inverseFraction(otherFraction.denominator_, otherFraction.numerator_);
     return (*this) * inverseFraction;
 }
-Fraction Fraction::operator/(float number) const
+Fraction Fraction::operator/(float number)
 {
     // first, convert the number to fraction
     int numerator = number * 1000;
     int denominator = 1000;
     Fraction floatFrac(numerator, denominator);
 
-    return floatFrac / (*this);
+    return (*this) / floatFrac;
 }
-Fraction ariel::operator/(float number, const Fraction &otherFraction)
+Fraction ariel::operator/(float number, Fraction &otherFraction)
 {
-    return otherFraction / number;
+    Fraction inverseFraction(otherFraction.denominator_, otherFraction.numerator_);
+    return inverseFraction * number;
 }
 
 // overload increase by one opertor
@@ -266,7 +249,7 @@ bool ariel::operator>(float number, const Fraction &otherFraction)
 // overload less-then operator
 bool Fraction::operator<(const Fraction &otherFraction)
 {
-    if (this->compareTo(otherFraction) == 1)
+    if (this->compareTo(otherFraction) == -1)
         return true;
     return false;
 }
