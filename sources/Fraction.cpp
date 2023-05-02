@@ -216,6 +216,7 @@ Fraction Fraction::operator--(int num)
     return temp;
 }
 
+// overload equality operator
 bool Fraction::operator==(const Fraction &otherFraction)
 {
     if (this->compareTo(otherFraction) == 0)
@@ -236,6 +237,7 @@ bool ariel::operator==(float number, const Fraction &otherFraction)
     return otherFraction == number;
 }
 
+// overload greater-then operator
 bool Fraction::operator>(const Fraction &otherFraction)
 {
     if (this->compareTo(otherFraction) == 1)
@@ -261,6 +263,7 @@ bool ariel::operator>(float number, const Fraction &otherFraction)
     return floatFrac > otherFraction;
 }
 
+// overload less-then operator
 bool Fraction::operator<(const Fraction &otherFraction)
 {
     if (this->compareTo(otherFraction) == 1)
@@ -286,6 +289,7 @@ bool ariel::operator<(float number, const Fraction &otherFraction)
     return floatFrac < otherFraction;
 }
 
+// overload less-then or equal to operator
 bool Fraction::operator<=(const Fraction &otherFraction)
 {
     return (*this < otherFraction) || (*this == otherFraction);
@@ -299,6 +303,7 @@ bool ariel::operator<=(float number, Fraction &otherFraction)
     return (otherFraction < number) || (number == otherFraction);
 }
 
+// overload greater-then or equal to operator
 bool Fraction::operator>=(const Fraction &otherFraction)
 {
     return (*this > otherFraction) || (*this == otherFraction);
@@ -312,6 +317,7 @@ bool ariel::operator>=(float number, Fraction &otherFraction)
     return (otherFraction > number) || (number == otherFraction);
 }
 
+// input/output operator
 istream &ariel::operator>>(istream &input, Fraction &otherFraction)
 {
     cout << "Enter Numerator ";
